@@ -1,0 +1,72 @@
+[
+  {
+    "Cod_pedido": 1,
+    "Cliente": "Charissa McFeate",
+    "Fecha": "2020-12-31 05:29:33 -0500",
+    "Termino_Pago": "efectivo",
+    "Total_Pedido": 272.99
+  },
+  {
+    "Cod_pedido": 2,
+    "Cliente": "Hubey Crop",
+    "Fecha": "2020-12-31 05:29:33 -0500",
+    "Termino_Pago": "efectivo",
+    "Total_Pedido": 103.41
+  },
+  {
+    "Cod_pedido": 3,
+    "Cliente": "Berri Holdworth",
+    "Fecha": "2020-12-31 05:29:33 -0500",
+    "Termino_Pago": "efectivo",
+    "Total_Pedido": 244.87
+  },
+  {
+    "Cod_pedido": 4,
+    "Cliente": "Becky Mulran",
+    "Fecha": "2020-12-31 05:29:33 -0500",
+    "Termino_Pago": "efectivo",
+    "Total_Pedido": 228.77
+  },
+  {
+    "Cod_pedido": 5,
+    "Cliente": "Morry Gianullo",
+    "Fecha": "2020-12-31 05:29:33 -0500",
+    "Termino_Pago": "efectivo",
+    "Total_Pedido": 113.07
+  },
+  {
+    "Cod_pedido": 6,
+    "Cliente": "Lynnet Hutley",
+    "Fecha": "2020-12-31 05:29:33 -0500",
+    "Termino_Pago": "efectivo",
+    "Total_Pedido": 100.96
+  },
+  {
+    "Cod_pedido": 7,
+    "Cliente": "Kaitlin Gouinlock",
+    "Fecha": "2020-12-31 05:29:33 -0500",
+    "Termino_Pago": "efectivo",
+    "Total_Pedido": 226.82
+  },
+  {
+    "Cod_pedido": 8,
+    "Cliente": "Stefano Lung",
+    "Fecha": "2020-12-31 05:29:33 -0500",
+    "Termino_Pago": "efectivo",
+    "Total_Pedido": 90.86
+  },
+  {
+    "Cod_pedido": 9,
+    "Cliente": "Laney Newham",
+    "Fecha": "2020-12-31 05:29:33 -0500",
+    "Termino_Pago": "efectivo",
+    "Total_Pedido": 254.3
+  },
+  {
+    "Cod_pedido": 10,
+    "Cliente": "Adrienne Waddoups",
+    "Fecha": "2020-12-31 05:29:33 -0500",
+    "Termino_Pago": "efectivo",
+    "Total_Pedido": 150.6
+  }
+]

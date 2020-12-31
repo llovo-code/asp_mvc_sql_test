@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Articulos">
+    <Key>
+      <PropertyRef Name="IdArticulo" />
+    </Key>
+    <Property Name="IdArticulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="25" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+    <Property Name="IdCategoria" Type="int" />
+    <Property Name="Precio" Type="float" />
+  </EntityType>
+  <EntityType Name="Categoria_Articulo">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo_Categoria" Type="nvarchar" MaxLength="25" />
+    <Property Name="Nombre_Categoria" Type="nvarchar" MaxLength="125" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo_Cliente" Type="nvarchar" MaxLength="25" />
+    <Property Name="PN_Cliente" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="SN_Cliente" Type="nvarchar" MaxLength="25" />
+    <Property Name="PA_Cliente" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="SA_Cliente" Type="nvarchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="Lineas_de_Pedido">
+    <Key>
+      <PropertyRef Name="IdLineaDePedido" />
+    </Key>
+    <Property Name="IdLineaDePedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumeroPedido" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdArticlo" Type="int" />
+    <Property Name="CantidadPedido" Type="int" />
+    <Property Name="Precio" Type="float" />
+    <Property Name="SubTotal" Type="float" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="IdPedido" />
+    </Key>
+    <Property Name="IdPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumeroPedido" Type="nvarchar" MaxLength="50" />
+    <Property Name="FechaPedido" Type="datetime" />
+    <Property Name="IdCliente" Type="int" />
+    <Property Name="TerminoPago" Type="nvarchar" MaxLength="50" />
+    <Property Name="TotalPedido" Type="float" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'test_aspnet.dbo.ListArticulos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="ListArticulos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Codigo Articulo" Type="nvarchar" MaxLength="25" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+    <Property Name="Codigo Categoria" Type="nvarchar" MaxLength="25" />
+    <Property Name="Nombre Categoria" Type="nvarchar" MaxLength="125" />
+    <Property Name="Precio" Type="float" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'test_aspnet.dbo.ListCliente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="ListCliente">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="25" />
+    <Property Name="Cliente" Type="nvarchar" MaxLength="103" />
+  </EntityType>
+  <Association Name="FK__Articulos__IdCat__267ABA7A">
+    <End Role="Categoria_Articulo" Type="Self.Categoria_Articulo" Multiplicity="0..1" />
+    <End Role="Articulos" Type="Self.Articulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria_Articulo">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Articulos">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lineas_de__IdArt__2E1BDC42">
+    <End Role="Articulos" Type="Self.Articulos" Multiplicity="0..1" />
+    <End Role="Lineas_de_Pedido" Type="Self.Lineas_de_Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Articulos">
+        <PropertyRef Name="IdArticulo" />
+      </Principal>
+      <Dependent Role="Lineas_de_Pedido">
+        <PropertyRef Name="IdArticlo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pedido__IdClient__2B3F6F97">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AddArticulo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Codigo_Arc" Type="nvarchar" Mode="In" />
+    <Parameter Name="Descp" Type="nvarchar" Mode="In" />
+    <Parameter Name="CodCat" Type="nvarchar" Mode="In" />
+    <Parameter Name="Precio" Type="float" Mode="In" />
+  </Function>
+  <Function Name="AddCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CodCliente" Type="nvarchar" Mode="In" />
+    <Parameter Name="PN" Type="nvarchar" Mode="In" />
+    <Parameter Name="SN" Type="nvarchar" Mode="In" />
+    <Parameter Name="PA" Type="nvarchar" Mode="In" />
+    <Parameter Name="SA" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ListarArticulos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ListarClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="DbEntitiesStoreContainer">
+    <EntitySet Name="Articulos" EntityType="Self.Articulos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categoria_Articulo" EntityType="Self.Categoria_Articulo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lineas_de_Pedido" EntityType="Self.Lineas_de_Pedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ListArticulos" EntityType="Self.ListArticulos" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ListArticulos].[ID] AS [ID], 
+    [ListArticulos].[Codigo Articulo] AS [Codigo Articulo], 
+    [ListArticulos].[Descripcion] AS [Descripcion], 
+    [ListArticulos].[Codigo Categoria] AS [Codigo Categoria], 
+    [ListArticulos].[Nombre Categoria] AS [Nombre Categoria], 
+    [ListArticulos].[Precio] AS [Precio]
+    FROM [dbo].[ListArticulos] AS [ListArticulos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ListCliente" EntityType="Self.ListCliente" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ListCliente].[ID] AS [ID], 
+    [ListCliente].[Codigo] AS [Codigo], 
+    [ListCliente].[Cliente] AS [Cliente]
+    FROM [dbo].[ListCliente] AS [ListCliente]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Articulos__IdCat__267ABA7A" Association="Self.FK__Articulos__IdCat__267ABA7A">
+      <End Role="Categoria_Articulo" EntitySet="Categoria_Articulo" />
+      <End Role="Articulos" EntitySet="Articulos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lineas_de__IdArt__2E1BDC42" Association="Self.FK__Lineas_de__IdArt__2E1BDC42">
+      <End Role="Articulos" EntitySet="Articulos" />
+      <End Role="Lineas_de_Pedido" EntitySet="Lineas_de_Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pedido__IdClient__2B3F6F97" Association="Self.FK__Pedido__IdClient__2B3F6F97">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Articulos">
+    <Key>
+      <PropertyRef Name="IdArticulo" />
+    </Key>
+    <Property Name="IdArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IdCategoria" Type="Int32" />
+    <Property Name="Precio" Type="Double" />
+    <NavigationProperty Name="Categoria_Articulo" Relationship="Self.FK__Articulos__IdCat__267ABA7A" FromRole="Articulos" ToRole="Categoria_Articulo" />
+    <NavigationProperty Name="Lineas_de_Pedido" Relationship="Self.FK__Lineas_de__IdArt__2E1BDC42" FromRole="Articulos" ToRole="Lineas_de_Pedido" />
+  </EntityType>
+  <EntityType Name="Categoria_Articulo">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo_Categoria" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre_Categoria" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Articulos" Relationship="Self.FK__Articulos__IdCat__267ABA7A" FromRole="Categoria_Articulo" ToRole="Articulos" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo_Cliente" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="PN_Cliente" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SN_Cliente" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="PA_Cliente" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SA_Cliente" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK__Pedido__IdClient__2B3F6F97" FromRole="Clientes" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="Lineas_de_Pedido">
+    <Key>
+      <PropertyRef Name="IdLineaDePedido" />
+    </Key>
+    <Property Name="IdLineaDePedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumeroPedido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdArticlo" Type="Int32" />
+    <Property Name="CantidadPedido" Type="Int32" />
+    <Property Name="Precio" Type="Double" />
+    <Property Name="SubTotal" Type="Double" />
+    <NavigationProperty Name="Articulos" Relationship="Self.FK__Lineas_de__IdArt__2E1BDC42" FromRole="Lineas_de_Pedido" ToRole="Articulos" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="IdPedido" />
+    </Key>
+    <Property Name="IdPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumeroPedido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FechaPedido" Type="DateTime" Precision="3" />
+    <Property Name="IdCliente" Type="Int32" />
+    <Property Name="TerminoPago" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TotalPedido" Type="Double" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK__Pedido__IdClient__2B3F6F97" FromRole="Pedido" ToRole="Clientes" />
+  </EntityType>
+  <EntityType Name="ListArticulos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Codigo_Articulo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Codigo_Categoria" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre_Categoria" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="Precio" Type="Double" />
+  </EntityType>
+  <EntityType Name="ListCliente">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Cliente" Type="String" MaxLength="103" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__Articulos__IdCat__267ABA7A">
+    <End Role="Categoria_Articulo" Type="Self.Categoria_Articulo" Multiplicity="0..1" />
+    <End Role="Articulos" Type="Self.Articulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria_Articulo">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Articulos">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Lineas_de__IdArt__2E1BDC42">
+    <End Role="Articulos" Type="Self.Articulos" Multiplicity="0..1" />
+    <End Role="Lineas_de_Pedido" Type="Self.Lineas_de_Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Articulos">
+        <PropertyRef Name="IdArticulo" />
+      </Principal>
+      <Dependent Role="Lineas_de_Pedido">
+        <PropertyRef Name="IdArticlo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pedido__IdClient__2B3F6F97">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Articulos" EntityType="Self.Articulos" />
+    <EntitySet Name="Categoria_Articulo" EntityType="Self.Categoria_Articulo" />
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+    <EntitySet Name="Lineas_de_Pedido" EntityType="Self.Lineas_de_Pedido" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+    <EntitySet Name="ListArticulos" EntityType="Self.ListArticulos" />
+    <EntitySet Name="ListCliente" EntityType="Self.ListCliente" />
+    <AssociationSet Name="FK__Articulos__IdCat__267ABA7A" Association="Self.FK__Articulos__IdCat__267ABA7A">
+      <End Role="Categoria_Articulo" EntitySet="Categoria_Articulo" />
+      <End Role="Articulos" EntitySet="Articulos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Lineas_de__IdArt__2E1BDC42" Association="Self.FK__Lineas_de__IdArt__2E1BDC42">
+      <End Role="Articulos" EntitySet="Articulos" />
+      <End Role="Lineas_de_Pedido" EntitySet="Lineas_de_Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pedido__IdClient__2B3F6F97" Association="Self.FK__Pedido__IdClient__2B3F6F97">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <FunctionImport Name="AddArticulo">
+      <Parameter Name="Codigo_Arc" Mode="In" Type="String" />
+      <Parameter Name="Descp" Mode="In" Type="String" />
+      <Parameter Name="CodCat" Mode="In" Type="String" />
+      <Parameter Name="Precio" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="AddCliente">
+      <Parameter Name="CodCliente" Mode="In" Type="String" />
+      <Parameter Name="PN" Mode="In" Type="String" />
+      <Parameter Name="SN" Mode="In" Type="String" />
+      <Parameter Name="PA" Mode="In" Type="String" />
+      <Parameter Name="SA" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ListarArticulos" ReturnType="Collection(DbEntities.ListarArticulos_Result)" />
+    <FunctionImport Name="ListarClientes" ReturnType="Collection(DbEntities.ListarClientes_Result)" />
+  </EntityContainer>
+  <ComplexType Name="ListarArticulos_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Codigo_Articulo" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="Codigo_Categoria" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Nombre_Categoria" Nullable="true" MaxLength="125" />
+    <Property Type="Double" Name="Precio" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ListarClientes_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Codigo" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Cliente" Nullable="true" MaxLength="103" />
+  </ComplexType>
+</Schema>

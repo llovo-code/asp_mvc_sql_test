@@ -1,0 +1,28 @@
+[
+  {
+    "Pedido": 
+    {
+      "Cod_pedido": "00000001",
+      "Fecha": "2020-12-30T00:00:00",
+      "Cliente": "Alejandro",
+      "Termino_Pago": "Efectivo",
+      "Total_Pedido": 210.45
+    },
+    "Detalle": [
+      {
+        "IdPedido": 1,
+        "Articulo": 12457845,
+        "Cantidad": 12,
+        "Precio": 7.75,
+        "SubTotal": 93.0
+      },
+      {
+        "IdPedido": 1,
+        "Articulo": 12784512,
+        "Cantidad": 6,
+        "Precio": 15.0,
+        "SubTotal": 90.0
+      }
+    ]
+  }
+]

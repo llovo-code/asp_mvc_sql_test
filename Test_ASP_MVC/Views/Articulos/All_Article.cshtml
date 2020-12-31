@@ -1,0 +1,49 @@
+﻿@model  List<Test_ASP_MVC.Models.ViewModels.Articulos_Model>
+@{
+    ViewBag.Title = "Todos los Articulos";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="container p-4">
+    <div class="row">
+        @foreach (var article in Model)
+        {
+            <div class="col-md-3 " style="margin-top: 10px; margin-bottom: 30px">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <a href="" target="_blank">
+                            <h4 class="card-title text-uppercase">
+                                @article.Descripicon
+                            </h4>
+                        </a>
+                        <p class="m-2">Codigo : @article.Codigo_Articulo</p>
+                        <p class="text-muted">
+                          Precio:  @article.Precio
+                        </p>
+                        <a class="btn btn-danger" href="">
+                            Delete Link
+                        </a>
+                        <a class="btn btn-secondary" href="">
+                            Edit
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--
+                  /**/
+
+                  { {else} }
+                  <div class="col-md-4 mx-auto">
+                      <div class="card card-body text-center">
+                          <p>There are not Links saved yet.</p>
+                          <a href="/links/add">Create One!</a>
+                      </div>
+                  </div>
+
+                  -->
+        }
+    </div>
+</div>
+
+
+

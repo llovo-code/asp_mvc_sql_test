@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbEntitiesStoreContainer" CdmEntityContainer="DatabaseEntities">
+    <EntitySetMapping Name="Articulos">
+      <EntityTypeMapping TypeName="DbEntities.Articulos">
+        <MappingFragment StoreEntitySet="Articulos">
+          <ScalarProperty Name="IdArticulo" ColumnName="IdArticulo" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categoria_Articulo">
+      <EntityTypeMapping TypeName="DbEntities.Categoria_Articulo">
+        <MappingFragment StoreEntitySet="Categoria_Articulo">
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="Codigo_Categoria" ColumnName="Codigo_Categoria" />
+          <ScalarProperty Name="Nombre_Categoria" ColumnName="Nombre_Categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="DbEntities.Clientes">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Codigo_Cliente" ColumnName="Codigo_Cliente" />
+          <ScalarProperty Name="PN_Cliente" ColumnName="PN_Cliente" />
+          <ScalarProperty Name="SN_Cliente" ColumnName="SN_Cliente" />
+          <ScalarProperty Name="PA_Cliente" ColumnName="PA_Cliente" />
+          <ScalarProperty Name="SA_Cliente" ColumnName="SA_Cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lineas_de_Pedido">
+      <EntityTypeMapping TypeName="DbEntities.Lineas_de_Pedido">
+        <MappingFragment StoreEntitySet="Lineas_de_Pedido">
+          <ScalarProperty Name="IdLineaDePedido" ColumnName="IdLineaDePedido" />
+          <ScalarProperty Name="NumeroPedido" ColumnName="NumeroPedido" />
+          <ScalarProperty Name="IdArticlo" ColumnName="IdArticlo" />
+          <ScalarProperty Name="CantidadPedido" ColumnName="CantidadPedido" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedido">
+      <EntityTypeMapping TypeName="DbEntities.Pedido">
+        <MappingFragment StoreEntitySet="Pedido">
+          <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+          <ScalarProperty Name="NumeroPedido" ColumnName="NumeroPedido" />
+          <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="TerminoPago" ColumnName="TerminoPago" />
+          <ScalarProperty Name="TotalPedido" ColumnName="TotalPedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListArticulos">
+      <EntityTypeMapping TypeName="DbEntities.ListArticulos">
+        <MappingFragment StoreEntitySet="ListArticulos">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Codigo_Articulo" ColumnName="Codigo Articulo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Codigo_Categoria" ColumnName="Codigo Categoria" />
+          <ScalarProperty Name="Nombre_Categoria" ColumnName="Nombre Categoria" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListCliente">
+      <EntityTypeMapping TypeName="DbEntities.ListCliente">
+        <MappingFragment StoreEntitySet="ListCliente">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddArticulo" FunctionName="DbEntities.Store.AddArticulo" />
+    <FunctionImportMapping FunctionImportName="AddCliente" FunctionName="DbEntities.Store.AddCliente" />
+    <FunctionImportMapping FunctionImportName="ListarArticulos" FunctionName="DbEntities.Store.ListarArticulos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DbEntities.ListarArticulos_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Codigo_Articulo" ColumnName="Codigo Articulo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Codigo_Categoria" ColumnName="Codigo Categoria" />
+          <ScalarProperty Name="Nombre_Categoria" ColumnName="Nombre Categoria" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListarClientes" FunctionName="DbEntities.Store.ListarClientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DbEntities.ListarClientes_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

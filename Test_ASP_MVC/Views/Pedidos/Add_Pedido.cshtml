@@ -1,0 +1,299 @@
+﻿
+@{
+    ViewBag.Title = "Nuevo Pedido";
+}
+
+
+
+
+<!--
+    <script src="https://cdn.jsdelivr.net/npm/table-to-json@1.0.0/lib/jquery.tabletojson.min.js" integrity="sha256-H8xrCe0tZFi/C2CgxkmiGksqVaxhW0PFcUKZJZo1yNU=" crossorigin="anonymous">
+    </script>
+    -->
+    <div id="div-alerta"></div>
+<h2>@ViewBag.Title</h2>
+<div class="container ">
+    <div class="row" id="order_section">
+        <fieldset>
+            <div class="col-md-4">
+
+                <!-- begin Numero de pedido-->
+                <div class="form-group">
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Pedido:</label>
+                        <div class="col-md-5">
+                            <input id="Cod_pedido" class="col-md-12 form-control" type="text" placeholder="00000000" disabled >
+                        </div>
+                    </div>
+                </div>
+                <!-- End Numero de pedido-->
+                <!--begin Cliente Data  -->
+
+                <div class="form-group">
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Cliente:</label>
+                        <div class="col-md-5">
+                            <input id="Cliente" class="col-md-12 form-control" type="text" placeholder="cliente">
+                        </div>
+                    </div>
+                </div>
+
+                <!--End  cliente data-->
+                <!--begin Fecha Fecha  -->
+
+                <div class="form-group">
+                    <div class="mb-3 row">
+                        <label class="col-sm-2 col-form-label">Fecha:</label>
+                        <div class="col-md-6">
+                            <input id="Fecha" class="col-md-12 form-control text-center" type="date" placeholder="" value="" >
+                        </div>
+                    </div>
+                </div>
+
+                <!--End  fecha data-->
+                <!--begin Tipo Pago  -->
+
+                <div class="form-group">
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label">Termino de Pago:</label>
+                        <div class="col-lg-8">
+                            <select id="Termino_Pago" class="form-select form-select-lg mb-3" aria-label="Default select example">
+                                <option selected>Efectivo</option>
+                                <option value="1">Credito</option>
+                                <option value="2">Contado</option>
+                            </select>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--End  Tipo Pago-->
+            </div>
+
+
+
+            <div class="col-md-4">
+
+
+                <!-- begin Articulo-->
+                <div class="form-group">
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Articulo:</label>
+                        <div class="col-md-5 mr-4">
+                            <input class="col-md-12 form-control" id="Articulo" type="text" placeholder="00000001">
+                        </div>
+                    </div>
+                </div>
+                <!-- End Articulo de pedido-->
+                <!--begin Descripcion Data  -->
+
+                <div class="form-group">
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Descripcion:</label>
+                        <div class="col-md-8">
+                            <input id="Descripcion" class="col-md-6 form-control" type="text" placeholder="Descripcion" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <!--End  Descripcion data-->
+                <!--begin Categoria Data  -->
+
+                <div class="form-group">
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Categoria:</label>
+                        <div class="col-md-8">
+                            <input id="Categoria" class="col-md-6 form-control" type="text" placeholder="categoria" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <!--End  Categoria data-->
+
+
+
+
+            </div>
+
+            <div class="col-md-4">
+                <!--begin Cantidad   -->
+
+                <div class="form-group">
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Cantidad:</label>
+                        <div class="col-md-4">
+                            <input id="Cantidad" class="col-sm-4 form-control" type="number" placeholder="0.00">
+                        </div>
+                    </div>
+                </div>
+
+                <!--End  Cantidad -->
+                <!--begin Precio   -->
+
+                <div class="form-group">
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Precio:</label>
+                        <div class="col-md-4">
+                            <input id="Precio" class="col-md-4 form-control" type="number" placeholder="$0.00">
+                        </div>
+                    </div>
+                </div>
+
+                <!--End  Precio   -->
+                <button id="addTable" class="btn btn-group  btn-default " type="submit" style="float:initial !important;">
+                    +Agregar a Carrito
+                </button>
+
+            </div>
+        </fieldset>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-lg-8 " data-bs-spy="scroll">
+
+
+            <table class="table table-striped" id="order_table">
+
+                <thead>
+                    <tr class="row">
+
+                        <th scope="col"></th>
+                        <th scope="col" hidden>IdPedido</th>
+                        <th scope="col">Articulo</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">SubTotal</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+        </div>
+        <hr />
+
+
+        <div class="col-lg-4">
+            <fieldset>
+                <div class="form-group">
+                    <div class="row mb-2" style="margin-top:50px !important; margin-bottom:5px;">
+                        <label class="col-sm-3 col-form-label">SubTotal:</label>
+                        <div class="col-md-5">
+                            <input id="subtotal" class="col-md-6 form-control" type="text" placeholder="$0.00" disabled default="0">
+                        </div>
+                    </div>
+
+                    <div class="row mb-2 " style="margin-bottom:5px;">
+                        <label class="col-sm-3 col-form-label">IVA:</label>
+                        <div class="col-md-5">
+                            <input id="iva" class="col-md-6 form-control" type="text" placeholder="$0.00" disabled default="0">
+                        </div>
+                    </div>
+                    <div class="row mb-2" style="margin-bottom:5px;">
+                        <label class="col-sm-3 col-form-label">Total:</label>
+                        <div class="col-md-5">
+                            <input id="Total_Pedido" class="col-md-6 form-control" type="text" placeholder="$0.00" disabled default="0">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <button id="save_order" class="btn btn-group  btn-default " style="float:right !important;">
+                Guardar Pedido
+            </button>
+        </div>
+
+
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+        $(document).ready(function () {
+            clean(false)
+            load()
+            $('#save_order').click(save_order)
+            
+        })
+
+
+ function save_order() {
+     var table = $('#order_table').tableToJSON({ ignoreColumns: [0, 6] })
+    var DetallePedido = []
+    $.each(table,function(index){
+         item = {}
+         item["IdPedido"] = table[index].IdPedido
+         item["Articulo"] = table[index].Articulo
+         item["Cantidad"] = table[index].Cantidad
+         item["Precio"] = table[index].Precio
+         item["SubTotal"] = table[index].SubTotal
+         DetallePedido.push(item)
+})
+         var Detalle = DetallePedido
+         var  Pedido = {
+             Cod_pedido: ltrim($('#Cod_pedido').val(),"0"),
+             Fecha: $('#Fecha').val(),
+             Cliente: $('#Cliente').val(),
+             Termino_Pago: $('#Termino_Pago option:selected').text(),
+             Total_Pedido: parseFloat($('#Total_Pedido').val())
+     }
+     
+
+     console.log(Detalle)
+     var url = '@Url.Action("Add_pedido","Pedidos")'
+     var data = {'detalle': Detalle, 'pedido': Pedido }
+     $.post(url, data).done(function () {
+         alert("OK")
+     }).fail(function () {
+         alert("MISTAKE")
+     })
+     clean(true)
+
+}
+
+function load() {
+     $('#Cod_pedido').val(zeroFill(@ViewData["Cod"] , 8).toString())
+}
+
+function clean(submit =false) {
+            var cod = $('#Cod_pedido').val()
+            $("#order_table tbody").children().each(function () {
+                $(this).fadeOut('slow', function () {
+                    total()
+                    $(this).remove()
+                })
+            })
+           
+    $('#order_section').find('input').each(function () { $(this).val("") })
+            var x_cod = ""
+            if (submit == true) {
+                x_cod = ltrim(cod.toString(),"0")
+                x_cod= zeroFill(parseInt(x_cod)+1, 8)
+                $('#Cod_pedido').val(x_cod.toString())
+            } else {
+                $('#Cod_pedido').val(cod.toString())
+    }
+
+        }
+
+  
+    </script>
+
+
+}
+

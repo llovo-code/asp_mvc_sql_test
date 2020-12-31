@@ -1,0 +1,49 @@
+﻿@model List<Test_ASP_MVC.Models.ViewModels.Pedido_Model>
+@{
+    ViewBag.Title = "Pedidos ";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Numero Pedido</td>
+            <td>Cliente</td>
+            <td>Fecha</td>
+            <td>Tipo de Pago</td>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var pedido in Model)
+            {
+        <tr>
+            <td>@pedido.Cod_pedido.ToString().PadLeft(8, '0') </td>
+            <td>@pedido.Cliente</td>
+            <td>@pedido.Fecha.ToString().Substring(0, 10)</td>
+            <td>@pedido.Termino_Pago</td>
+            <td>@pedido.Total_Pedido</td>
+            <td><button id="delete_row" class="btn btn-danger" type="reset">Eliminar</button></td>
+            <td><button class="btn btn-success" type="submit">Editar</button></td>
+        </tr>
+            }
+
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            $(this).parent().parent().fadeOut('slow', function () {
+        $(this).remove()
+    })
+        })
+
+    </script>
+   
+    } 
